@@ -1,0 +1,10 @@
+node_modules/
+dist/
+
+# env files
+.env*
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db

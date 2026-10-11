@@ -1,0 +1,77 @@
+/* FAQ accordion */
+
+.faq {
+  max-width: 920px;
+}
+
+.faq details {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq details:first-of-type {
+  border-top: 1px solid var(--line);
+}
+
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 22px 0;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.pm {
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  position: relative;
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.pm::before,
+.pm::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 14px;
+  height: 2px;
+  margin: -1px 0 0 -7px;
+  background: #fff;
+  transition: transform 0.35s var(--out), background 0.25s;
+}
+
+.pm::after {
+  transform: rotate(90deg);
+}
+
+.faq details[open] .pm {
+  background: var(--y);
+  border-color: var(--y);
+}
+
+.faq details[open] .pm::before,
+.faq details[open] .pm::after {
+  background: #000;
+}
+
+.faq details[open] .pm::after {
+  transform: rotate(0);
+}
+
+.faq details p {
+  margin: 0 0 24px;
+  color: var(--mut);
+  max-width: 62ch;
+}

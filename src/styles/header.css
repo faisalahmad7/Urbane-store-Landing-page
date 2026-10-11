@@ -1,0 +1,108 @@
+/* Header and burger button */
+
+.hd {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: calc(14px + env(safe-area-inset-top, 0px)) clamp(16px, 4vw, 48px) 14px;
+  transition: background 0.4s, backdrop-filter 0.4s;
+}
+
+.hd.solid {
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+}
+
+.logo svg {
+  width: 38px;
+  height: 38px;
+}
+
+.logo span {
+  font-family: var(--fl);
+  font-weight: 600;
+  font-size: 1.55rem;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 99px;
+  border: 1.5px solid var(--line);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.25s, color 0.25s, border-color 0.25s, transform 0.25s;
+}
+
+.pill:hover {
+  border-color: #fff;
+}
+
+.pill.y {
+  background: var(--y);
+  color: #000;
+  border-color: var(--y);
+}
+
+.pill.y:hover {
+  background: #fff;
+  border-color: #fff;
+}
+
+.cnt {
+  min-width: 22px;
+  height: 22px;
+  border-radius: 99px;
+  background: var(--y);
+  color: #000;
+  font-size: 0.8rem;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  padding: 0 6px;
+}
+
+.pill.has {
+  border-color: var(--y);
+}
+
+.burger {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--line);
+  display: grid;
+  place-content: center;
+  gap: 6px;
+}
+
+.burger i {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.burger:hover {
+  border-color: #fff;
+}

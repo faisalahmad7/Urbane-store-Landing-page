@@ -1,0 +1,95 @@
+/* Footwear / clothing split panels */
+
+.range {
+  background: var(--s1);
+}
+
+.split {
+  display: flex;
+  gap: 14px;
+  height: min(66vh, 580px);
+  min-height: 460px;
+}
+
+.pan {
+  position: relative;
+  flex: 1 1 0;
+  border-radius: 30px;
+  overflow: hidden;
+  transition: flex 0.85s var(--ease);
+  isolation: isolate;
+}
+
+.pan:hover {
+  flex: 1.5;
+}
+
+.pan > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  transition: transform 1.2s var(--out);
+}
+
+.pan:hover > img {
+  transform: scale(1.06);
+}
+
+.pan::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.94) 8%, rgba(0, 0, 0, 0.38) 55%, rgba(0, 0, 0, 0.08));
+}
+
+.pc {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: clamp(22px, 3vw, 40px);
+}
+
+.pc .no {
+  font-weight: 700;
+  color: var(--y);
+  margin: 0 0 6px;
+}
+
+.pc h3 {
+  margin: 0 0 12px;
+  font-size: clamp(2.6rem, 6vw, 5.4rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+}
+
+.pc p {
+  margin: 0 0 16px;
+  max-width: 44ch;
+  color: #e4e4e4;
+}
+
+.chips2 {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chips2 li {
+  padding: 7px 14px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  font-weight: 600;
+  font-size: 0.9rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}

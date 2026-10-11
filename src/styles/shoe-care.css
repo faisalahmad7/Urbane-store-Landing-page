@@ -1,0 +1,158 @@
+/* Shoe care section and before/after slider */
+
+.care {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(24px, 5vw, 72px);
+  align-items: center;
+}
+
+.ba {
+  position: relative;
+  aspect-ratio: 16/11;
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--y);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ba .lay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.ba .lay svg {
+  width: 84%;
+  height: auto;
+  filter: drop-shadow(0 24px 20px rgba(0, 0, 0, 0.3));
+}
+
+.ba .dirty {
+  background: #b7a15f;
+  clip-path: inset(0 calc(100% - var(--p, 50%)) 0 0);
+}
+
+.ba .dirty svg {
+  filter: grayscale(0.35) contrast(0.9) brightness(0.82) sepia(0.35) drop-shadow(0 24px 20px rgba(0, 0, 0, 0.3));
+}
+
+.ba .tag {
+  position: absolute;
+  top: 16px;
+  padding: 6px 14px;
+  border-radius: 99px;
+  background: #000;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.88rem;
+  z-index: 3;
+}
+
+.ba .tag.l {
+  left: 16px;
+}
+
+.ba .tag.r {
+  right: 16px;
+}
+
+.ba .hdl {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--p, 50%);
+  width: 4px;
+  margin-left: -2px;
+  background: #000;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.ba .hdl::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 48px;
+  height: 48px;
+  margin: -24px;
+  border-radius: 50%;
+  background: #000;
+  border: 3px solid #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.ba .hdl::before {
+  content: "‹ ›";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  z-index: 2;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 3px;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.ba input {
+  touch-action: pan-y;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize;
+  z-index: 5;
+  margin: 0;
+}
+
+.ba input:focus-visible + .hdl::after {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.excl {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 7px 15px;
+  border-radius: 99px;
+  background: var(--y);
+  color: #000;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.care h2 .y {
+  color: var(--y);
+}
+
+.care ul {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 28px;
+  display: grid;
+  gap: 10px;
+  color: var(--mut);
+}
+
+.care li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.care li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--y);
+  flex: none;
+}
