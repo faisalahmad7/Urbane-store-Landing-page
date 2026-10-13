@@ -32,8 +32,8 @@ A fast, animated, mobile-first landing page for the urbané walk-in store.
 
 ## Overview
 
-urbané is a walk-in store selling genuine branded footwear and clothing (1-year warranty,
-GST billed, up to 50% off). This site is a single landing page that sells the store's
+urbané is a walk-in store selling genuine branded footwear and clothing (1-year footwear
+warranty, GST billed, flat 50% off). This site is a single landing page that sells the store's
 promise, shows the shop floor, and gets people to visit, call or WhatsApp.
 
 There is no framework and no runtime dependency. Vite is used only for the dev server and
@@ -45,8 +45,8 @@ the production build.
 - **Hero collage:** full-bleed storefront photo with floating photo cards that follow the
   mouse on desktop.
 - **Moving brand strip and ribbons:** Nike, adidas, Puma, Reebok, Fila, New Balance,
-  Skechers, Crocs and Mochi.
-- **Scroll reveals and count-up stats:** 100% genuine, 1-year warranty, up to 50% off,
+  Skechers and Crocs.
+- **Scroll reveals and count-up stats:** 100% genuine, 1-year footwear warranty, flat 50% off,
   4.9 on Google.
 - **Footwear and clothing panels:** each opens its own photo set.
 - **"Inside urbané" photo reels:** two endlessly scrolling rows of real store photos.
@@ -145,6 +145,8 @@ CSS load order matters. `src/styles/main.css` lists the files in the order they 
 | ---------------------------------------- | -------------------------------------------------- |
 | Headlines, copy, FAQ, address, links     | `index.html`                                       |
 | Phone number                             | `src/config/siteConfig.js` and the `tel:` links in `index.html` |
+| Email address                            | Search `support@urbane.in` in `index.html` (visit section and footer) |
+| "View all reviews" link                  | Search `Shoe+store+Kausar+Baugh+Pune+reviews` in `index.html` |
 | WhatsApp message text                    | `src/config/siteConfig.js`                         |
 | Brand colours, fonts, spacing            | `:root` tokens in `src/styles/base.css`            |
 | One section's look                       | `src/styles/<section>.css`                         |

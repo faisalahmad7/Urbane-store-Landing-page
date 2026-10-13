@@ -12,5 +12,4 @@ export const BRANDS = [
   { name: "New Balance", src: "/images/logos/new-balance.webp", width: 259, height: 120 },
   { name: "Skechers", src: "/images/logos/skechers.webp", width: 1218, height: 120 },
   { name: "Crocs", src: "/images/logos/crocs.webp", width: 631, height: 120 },
-  { name: "Mochi", src: "/images/logos/mochi.webp", width: 159, height: 120 },
 ];

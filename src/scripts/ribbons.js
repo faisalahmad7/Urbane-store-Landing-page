@@ -8,8 +8,8 @@ const MARK_DARK =
 const MARK_YELLOW =
   '<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#FFC20E"/><path d="M31 28 V54 A19 19 0 0 0 69 54 M69 28 V74" fill="none" stroke="#000" stroke-width="11"/></svg>';
 
-const RIBBON_1 = ["100% Genuine", "Up to 50% Off", "1 Year Warranty", "Footwear", "Clothing", "GST Billed", "Walk in, try on"];
-const RIBBON_2 = ["Genuine products", "Footwear", "Sale on top brands", "Clothing", "1 Year Warranty", "Up to 50% Off", "Visit the store"];
+const RIBBON_1 = ["100% Genuine", "Flat 50% Off", "1 Year Footwear Warranty", "Footwear", "Clothing", "GST Billed", "Walk in, try on"];
+const RIBBON_2 = ["Genuine products", "Footwear", "Sale on top brands", "Clothing", "1 Year Footwear Warranty", "Flat 50% Off", "Visit the store"];
 
 /** Repeats the content four times so the CSS marquee never shows a gap. */
 function fillRibbon(el, words, mark) {
