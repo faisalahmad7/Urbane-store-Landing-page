@@ -24,11 +24,13 @@
   align-items: center;
   gap: 10px;
   margin-right: auto;
+  min-width: 0;
 }
 
-.logo svg {
-  width: 38px;
-  height: 38px;
+.logo img {
+  width: 44px;
+  height: 44px;
+  flex: none;
 }
 
 .logo span {
@@ -37,9 +39,12 @@
   font-size: 1.55rem;
   letter-spacing: -0.02em;
   line-height: 1;
+  white-space: nowrap;
 }
 
 .pill {
+  flex: none;
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -85,6 +90,7 @@
 }
 
 .burger {
+  flex: none;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -105,4 +111,64 @@
 
 .burger:hover {
   border-color: #fff;
+}
+
+/* Phones: keep logo, Visit us and menu on one tidy row */
+@media (max-width: 640px) {
+  .hd {
+    gap: 8px;
+    padding-bottom: 10px;
+  }
+
+  .hd.solid {
+    background: rgba(0, 0, 0, 0.88);
+  }
+
+  .logo {
+    gap: 8px;
+  }
+
+  .logo img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hd .pill {
+    height: 40px;
+    padding: 0 16px;
+    font-size: 0.9rem;
+  }
+
+  .burger {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 360px) {
+  .hd {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .logo img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hd .logo span {
+    font-size: 1.1rem;
+  }
+
+  .hd .pill {
+    padding: 0 13px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Very small phones: badge only, no wordmark text */
+@media (max-width: 325px) {
+  .hd .logo span {
+    display: none;
+  }
 }

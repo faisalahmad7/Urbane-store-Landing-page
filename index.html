@@ -17,30 +17,20 @@
       rel="stylesheet"
     >
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="/src/styles/main.css">
   </head>
   <body>
     <!-- loader -->
     <div class="loader" aria-hidden="true">
-      <svg viewBox="0 0 100 100">
-        <path class="u1" pathLength="1" d="M30 26 V54 A20 20 0 0 0 70 54"/>
-        <path class="u2" pathLength="1" d="M70 26 V76"/>
-      </svg>
-      <b>urbané</b>
+      <img src="/logo.webp" alt="" width="512" height="512">
     </div>
     <!-- header -->
     <header class="hd" id="hd">
       <a class="logo" href="#top" data-go aria-label="urbané home">
-        <svg viewBox="0 0 100 100" aria-hidden="true">
-          <circle cx="50" cy="50" r="50" fill="#FFC20E"/>
-          <path
-            d="M31 28 V54 A19 19 0 0 0 69 54 M69 28 V74"
-            fill="none"
-            stroke="#000"
-            stroke-width="11"
-            stroke-linecap="butt"
-          />
-        </svg>
+        <img src="/logo.webp" alt="" width="512" height="512" aria-hidden="true" decoding="async">
         <span>urbané</span>
       </a>
       <a class="pill y" href="#visit" data-go>Visit us</a>
@@ -53,20 +43,12 @@
     <aside class="menu" id="menu" aria-label="Menu" aria-hidden="true">
       <div class="mh">
         <a class="logo" href="#top" data-go aria-label="urbané home">
-          <svg viewBox="0 0 100 100" aria-hidden="true">
-            <circle cx="50" cy="50" r="50" fill="#000"/>
-            <path
-              d="M31 28 V54 A19 19 0 0 0 69 54 M69 28 V74"
-              fill="none"
-              stroke="#FFC20E"
-              stroke-width="11"
-            />
-          </svg>
+          <img src="/logo.webp" alt="" width="512" height="512" aria-hidden="true" decoding="async">
           <span>urbané</span>
         </a>
         <button class="xbtn" data-close>Close</button>
       </div>
-      <p class="mtag">Footwear | Clothing | Lifestyle</p>
+      <p class="mtag">Footwear | Clothing | Apparel</p>
       <nav>
         <a href="#why" data-go><span style="--i:0">Why urbané</span></a>
         <a href="#footwear" data-go><span style="--i:1">Footwear</span></a>
@@ -149,21 +131,21 @@
               </svg>Flat 50% off
             </li>
           </ul>
+          <p class="htag">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/>
+              <circle cx="12" cy="10" r="2.5"/>
+            </svg>Find us in Kausar Baugh, behind Sana Hospital
+          </p>
         </div>
-        <p class="htag">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/>
-            <circle cx="12" cy="10" r="2.5"/>
-          </svg>Find us in Kausar Baugh, behind Sana Hospital
-        </p>
         <div class="collage" id="collage">
           <div class="ph p1">
             <div class="pi">
@@ -198,14 +180,7 @@
               ><textPath href="#circ" textLength="484" lengthAdjust="spacing">GENUINE • FLAT 50% OFF • FOOTWEAR WARRANTY • </textPath></text>
             </svg>
             <div class="core">
-              <svg viewBox="0 0 100 100">
-                <path
-                  d="M31 28 V54 A19 19 0 0 0 69 54 M69 28 V74"
-                  fill="none"
-                  stroke="#FFC20E"
-                  stroke-width="12"
-                />
-              </svg>
+              <img src="/logo.webp" alt="" width="512" height="512" aria-hidden="true" decoding="async">
             </div>
           </div>
         </div>
@@ -260,9 +235,9 @@
               <h3>Footwear warranty</h3>
               <p>On genuine branded footwear only. Ask us in store for the details.</p>
             </div>
-            <div class="stat rv" style="--d:.16s">
-              <div class="num"><small>flat</small><span data-count="50">50</span>%</div>
-              <h3>Off, 365 days a year</h3>
+            <div class="stat hl rv" style="--d:.16s">
+              <div class="num"><small class="fl">flat</small><span data-count="50">50</span>%<small class="fl">off</small></div>
+              <h3>365 days a year</h3>
               <p>Flat 50% off on genuine brands, every day of the year. Come and compare.</p>
             </div>
             <div class="stat rv" style="--d:.24s">
@@ -461,7 +436,7 @@
         <div class="wrap rvall">
           <a
             class="btn k"
-            href="https://www.google.com/search?q=urban%C3%A9+Shoe+store+Kausar+Baugh+Pune+reviews"
+            href="https://www.google.com/search?sxsrf=APpeQnui0nQNRzdR-w1o0rrI6V3Rr_NLlw:1791917362031&amp;si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_5T9_fyQgZqZRI_BSocSgAyvmx5vhY9X38SzGIo53PyBDsupO3dP_2NNlkwhEQFt7Hat7R2QRevuCtz0gQm12LnRihwI&amp;q=urban%C3%A9+Reviews"
             target="_blank"
             rel="noopener"
           >
@@ -549,14 +524,7 @@
             </div>
             <div class="owner">
               <div class="av">
-                <svg viewBox="0 0 100 100" aria-hidden="true">
-                  <path
-                    d="M26 24 V54 A24 24 0 0 0 74 54 M74 24 V80"
-                    fill="none"
-                    stroke="#000"
-                    stroke-width="13"
-                  />
-                </svg>
+                <img src="/logo.webp" alt="" width="512" height="512" aria-hidden="true" decoding="async">
               </div>
               <p>
                 <b>Meet Aman.</b><br><small>Friendly, hands-on, and happy to help you pick.</small>
@@ -605,13 +573,7 @@
                 <text x="90" y="300" transform="rotate(-19 90 300)">Kausar Baugh Rd</text>
               </g>
               <circle class="pulse" cx="345" cy="250" r="26" fill="#FFC20E"/>
-              <circle cx="345" cy="250" r="26" fill="#FFC20E"/>
-              <path
-                d="M333 240 V252 A12 12 0 0 0 357 252 M357 240 V262"
-                fill="none"
-                stroke="#000"
-                stroke-width="6"
-              />
+              <image href="/logo.webp" x="317" y="222" width="56" height="56"/>
               <text
                 x="300"
                 y="300"
@@ -644,18 +606,10 @@
       <div class="wrap">
         <div class="ft">
           <div class="fb">
-            <div class="big-u"><svg viewBox="0 0 100 100" aria-hidden="true">
-                <circle cx="50" cy="50" r="50" fill="#FFC20E"/>
-                <path
-                  d="M31 28 V54 A19 19 0 0 0 69 54 M69 28 V74"
-                  fill="none"
-                  stroke="#000"
-                  stroke-width="11"
-                />
-              </svg>
+            <div class="big-u"><img src="/logo.webp" alt="" width="512" height="512" aria-hidden="true" decoding="async">
               urbané</div>
             <p>
-              Footwear | Clothing | Lifestyle. Genuine branded products, billed with GST, with a
+              Footwear | Clothing | Apparel. Genuine branded products, billed with GST, with a
               1-year warranty on footwear. Walk in and see for yourself.
             </p>
             <div class="acts">
@@ -807,7 +761,7 @@
             </a>
             <a
               class="cr"
-              href="https://www.google.com/search?q=urban%C3%A9+Shoe+store+Kausar+Baugh+Pune+reviews"
+              href="https://www.google.com/search?sxsrf=APpeQnui0nQNRzdR-w1o0rrI6V3Rr_NLlw:1791917362031&amp;si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_5T9_fyQgZqZRI_BSocSgAyvmx5vhY9X38SzGIo53PyBDsupO3dP_2NNlkwhEQFt7Hat7R2QRevuCtz0gQm12LnRihwI&amp;q=urban%C3%A9+Reviews"
               target="_blank"
               rel="noopener"
             >

@@ -104,7 +104,8 @@ urbane-landing/
 ├── package.json
 ├── vite.config.js
 ├── public/                    Served as-is
-│   ├── favicon.svg
+│   ├── logo.webp              Urbané badge logo, used everywhere the logo appears
+│   ├── favicon.svg            Same badge as the tab icon (plus favicon-48/192.png, apple-touch-icon.png)
 │   └── images/
 │       ├── logos/             Brand logos (.webp)
 │       └── photos/            Store photos (.webp)

@@ -4,9 +4,9 @@ import { BRANDS } from "../data/brands.js";
 import { $ } from "./utils.js";
 
 const MARK_DARK =
-  '<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#000"/><path d="M31 28 V54 A19 19 0 0 0 69 54 M69 28 V74" fill="none" stroke="#FFC20E" stroke-width="11"/></svg>';
+  '<img src="/logo.webp" alt="" width="512" height="512" aria-hidden="true" decoding="async">';
 const MARK_YELLOW =
-  '<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="50" fill="#FFC20E"/><path d="M31 28 V54 A19 19 0 0 0 69 54 M69 28 V74" fill="none" stroke="#000" stroke-width="11"/></svg>';
+  '<img src="/logo.webp" alt="" width="512" height="512" aria-hidden="true" decoding="async">';
 
 const RIBBON_1 = ["100% Genuine", "Flat 50% Off", "1 Year Footwear Warranty", "Footwear", "Clothing", "GST Billed", "Walk in, try on"];
 const RIBBON_2 = ["Genuine products", "Footwear", "Sale on top brands", "Clothing", "1 Year Footwear Warranty", "Flat 50% Off", "Visit the store"];

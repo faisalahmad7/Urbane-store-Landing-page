@@ -13,43 +13,18 @@
   animation: ld 2.1s var(--ease) forwards;
 }
 
-.loader svg {
-  width: min(30vw, 132px);
+.loader img {
+  width: min(44vw, 190px);
   height: auto;
-}
-
-.loader .u1,
-.loader .u2 {
-  fill: none;
-  stroke: #000;
-  stroke-width: 11;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-  animation: draw 0.8s 0.25s var(--out) forwards;
-}
-
-.loader .u2 {
-  animation-delay: 0.55s;
-}
-
-.loader b {
-  font-family: var(--fl);
-  font-weight: 600;
-  font-size: clamp(1.6rem, 5vw, 2.2rem);
-  letter-spacing: -0.01em;
   opacity: 0;
-  animation: fade 0.5s 0.9s forwards;
+  transform: scale(0.82);
+  animation: pop 0.7s 0.2s var(--out) forwards;
 }
 
-@keyframes draw {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes fade {
+@keyframes pop {
   to {
     opacity: 1;
+    transform: none;
   }
 }
 

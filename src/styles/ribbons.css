@@ -33,9 +33,9 @@
   text-transform: uppercase;
 }
 
-.rb svg {
-  width: 0.85em;
-  height: 0.85em;
+.rb img {
+  width: 1.15em;
+  height: 1.15em;
   flex: none;
 }
 

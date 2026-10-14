@@ -118,6 +118,16 @@
     gap: 4px;
   }
 
+  .stat.hl,
+  .stat:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .stat.hl .num {
+    font-size: 2.7rem;
+    gap: 8px;
+  }
+
   .stat h3 {
     font-size: 1.05rem;
     margin-top: 10px;
@@ -443,5 +453,25 @@
   .js .rv {
     opacity: 1;
     translate: none;
+  }
+}
+
+/* Phone polish */
+@media (max-width: 640px) {
+  .spin {
+    left: 2%;
+    width: 30%;
+  }
+
+  .pan::after {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.96) 18%, rgba(0, 0, 0, 0.72) 52%, rgba(0, 0, 0, 0.18));
+  }
+
+  .pc p:not(.no) {
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+  }
+
+  .visit .acts {
+    gap: 12px;
   }
 }

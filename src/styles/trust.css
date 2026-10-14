@@ -76,6 +76,64 @@
   line-height: 1.45;
 }
 
+.stat .num .fl {
+  position: relative;
+  overflow: hidden;
+  align-self: flex-start;
+  margin-top: 0.3em;
+  padding: 0.5em 0.85em;
+  border-radius: 99px;
+  background: #fff;
+  color: #000;
+  font-size: 0.3em;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1;
+  transform: rotate(-4deg);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.22), 0 4px 18px rgba(255, 255, 255, 0.28);
+}
+
+.stat .num .fl:last-child {
+  transform: rotate(4deg);
+  animation: offpulse 2.2s ease-in-out infinite;
+}
+
+.stat .num .fl::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -60%;
+  width: 40%;
+  background: linear-gradient(100deg, transparent, rgba(255, 194, 14, 0.7), transparent);
+  transform: skewX(-20deg);
+  animation: pfshine 3.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes offpulse {
+  0%,
+  100% {
+    scale: 1;
+  }
+
+  50% {
+    scale: 1.12;
+  }
+}
+
+.stat.hl {
+  border-color: var(--y);
+  box-shadow: 0 0 0 1px var(--y), 0 14px 40px rgba(255, 194, 14, 0.16);
+  background: linear-gradient(160deg, rgba(255, 194, 14, 0.14), var(--s1) 62%);
+}
+
+.stat.hl .num {
+  font-size: clamp(1.6rem, 2.8vw, 3.2rem);
+  gap: 0.2em;
+}
+
 .stat.y {
   background: var(--y);
   border-color: var(--y);
