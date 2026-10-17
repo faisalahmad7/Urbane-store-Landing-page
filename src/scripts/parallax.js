@@ -1,13 +1,19 @@
-/** Pointer parallax on the hero collage, and gentle scroll parallax on `[data-px]` photos. */
+/** Pointer parallax on the hero (only if it has a collage), and gentle scroll parallax on `[data-px]` photos. */
 
 import { $, $$, hasMouse, reduceMotion } from "./utils.js";
 
-/** Hero photo collage follows the mouse (desktop only). */
+/** Hero video: with reduced motion it stays on a still frame. Collage parallax is optional. */
 export function initHeroParallax() {
-  if (reduceMotion || !hasMouse()) return;
+  const video = $("#heroVideo");
+  if (video && reduceMotion) {
+    video.removeAttribute("autoplay");
+    video.pause();
+  }
 
   const hero = $("#hero");
   const collage = $("#collage");
+  if (!hero || !collage || reduceMotion || !hasMouse()) return;
+
   let targetX = 0;
   let targetY = 0;
   let currentX = 0;
