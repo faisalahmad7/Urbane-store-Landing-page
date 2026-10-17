@@ -16,9 +16,7 @@ if (start === -1 || end === -1 || end < start) {
 const hero = `<section class="hero" id="hero">
         <div class="hbg">
           <img data-i="15" alt="The urbané storefront in Kausar Baugh, Pune">
-          <video id="heroVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
-            <source src="/videos/hero.mp4" type="video/mp4">
-          </video>
+          <video id="heroVideo" muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1" data-src-d="/videos/hero.mp4" data-src-m="/videos/hero-m.mp4"></video>
         </div>
         <div class="hcopy">
           <p class="eyebrow"><i></i>Walk-in store, Kausar Baugh</p>

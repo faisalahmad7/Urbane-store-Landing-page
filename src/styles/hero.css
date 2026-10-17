@@ -43,6 +43,12 @@
 
 .hbg video {
   background: transparent;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.hbg video.on {
+  opacity: 1;
 }
 
 .hbg::after {

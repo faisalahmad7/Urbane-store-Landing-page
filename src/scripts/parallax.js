@@ -2,13 +2,23 @@
 
 import { $, $$, hasMouse, reduceMotion } from "./utils.js";
 
-/** Hero video: with reduced motion it stays on a still frame. Collage parallax is optional. */
-export function initHeroParallax() {
+/** Hero video: a small portrait file on phones, a larger one elsewhere. Skipped for reduced motion or data saver. */
+function initHeroVideo() {
   const video = $("#heroVideo");
-  if (video && reduceMotion) {
-    video.removeAttribute("autoplay");
-    video.pause();
-  }
+  if (!video) return;
+  const saveData = navigator.connection && navigator.connection.saveData;
+  if (reduceMotion || saveData) return;
+
+  const phone = window.matchMedia("(max-width: 640px)").matches;
+  video.src = phone ? video.dataset.srcM : video.dataset.srcD;
+  video.addEventListener("playing", () => video.classList.add("on"), { once: true });
+  const p = video.play();
+  if (p && p.catch) p.catch(() => {});
+}
+
+/** Pointer parallax on the hero collage (only if it exists). */
+export function initHeroParallax() {
+  initHeroVideo();
 
   const hero = $("#hero");
   const collage = $("#collage");
