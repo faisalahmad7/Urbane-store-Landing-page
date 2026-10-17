@@ -12,10 +12,6 @@ if (start === -1 || end === -1 || end < start) {
   console.error("Could not find the hero section markers in index.html. Nothing changed.");
   process.exit(1);
 }
-if (html.includes('id="heroVideo"')) {
-  console.log("Hero video is already in index.html. Nothing to do.");
-  process.exit(0);
-}
 
 const hero = `<section class="hero" id="hero">
         <div class="hbg">
@@ -27,17 +23,15 @@ const hero = `<section class="hero" id="hero">
         <div class="hcopy">
           <p class="eyebrow"><i></i>Walk-in store, Kausar Baugh</p>
           <h1 aria-label="Genuine brands. Real savings.">
-            <span class="ln"><span style="--i:0">Genuine</span></span>
-            <span class="ln"><span style="--i:1">brands.</span></span>
-            <span class="ln y"><span style="--i:2">Real savings.</span></span>
+            <span class="ln"><span style="--i:0">Genuine brands.</span></span>
+            <span class="ln y"><span style="--i:1">Real savings.</span></span>
           </h1>
-          <p class="lead">
-            Genuine branded footwear and clothing at <b>flat 50% off</b>, with a
-            <b style="white-space:nowrap">1-year warranty on footwear</b>.
-          </p>
           <div class="cta">
             <a class="btn y" href="#visit" data-go>Visit the store</a>
-            <a class="btn o" id="heroWa" href="#" target="_blank" rel="noopener">Chat with Aman</a>
+            <ul class="deals">
+              <li class="off"><b>Flat 50% off</b><small>on genuine brands</small></li>
+              <li><b>1-year warranty</b><small>on footwear</small></li>
+            </ul>
           </div>
         </div>
       </section>

@@ -1,13 +1,8 @@
-urbané hero video update
+urbané hero update (v2)
 
-1. Unzip into the root of Urbane-store-Landing-page (say yes to overwrite).
-2. In a terminal at the repo root run:   node apply-hero.mjs
-   (it rewrites only the hero section of index.html, then you can delete apply-hero.mjs)
-3. npm run dev  to check it, then commit and push:
-   git add -A && git commit -m "Hero video, decluttered hero" && git push
+1. Unzip into the repo root (overwrite when asked).
+2. Run:  node apply-hero.mjs      (rewrites only the hero section of index.html; safe to re-run)
+3. npm run dev, check, then commit and push.
 
-Files:
-  public/videos/hero.mp4      enhanced video, 1280x720, ~6.8 MB, no audio
-  src/styles/hero.css         video background, lighter overlay, single-column hero
-  src/scripts/parallax.js     safe without the collage, pauses video for reduced motion
-  apply-hero.mjs              one-time edit of index.html
+Files: public/videos/hero.mp4, src/styles/hero.css, src/scripts/parallax.js,
+       src/scripts/whatsapp.js, apply-hero.mjs

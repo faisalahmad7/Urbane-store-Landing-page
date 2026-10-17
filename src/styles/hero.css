@@ -94,9 +94,9 @@
 .hero h1 {
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
   margin: 0;
-  font-size: clamp(3.2rem, 6vw, 6.2rem);
-  line-height: 1;
-  letter-spacing: -0.05em;
+  font-size: clamp(2.7rem, 5.2vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
   font-weight: 800;
 }
 
@@ -124,23 +124,70 @@
   }
 }
 
-.hero .lead {
-  margin: 22px 0 28px;
-  font-size: clamp(1.05rem, 1.7vw, 1.3rem);
-  color: #e2e2e2;
-  max-width: 44ch;
-  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
-}
-
-.hero .lead b {
-  color: #fff;
-  font-weight: 600;
-}
-
 .hero .cta {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
   gap: 12px;
+  margin-top: 28px;
+}
+
+.deals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.deals li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  min-height: 52px;
+  padding: 8px 18px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1.5px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  line-height: 1.15;
+}
+
+.deals b {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+
+.deals small {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #cfcfcf;
+}
+
+.deals .off {
+  background: var(--y);
+  border-color: var(--y);
+  color: #000;
+}
+
+.deals .off small {
+  color: rgba(0, 0, 0, 0.72);
+}
+
+@media (max-width: 640px) {
+  .deals {
+    width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .deals li {
+    flex: 1 1 0;
+    padding: 8px 12px;
+  }
 }
 
 /* Kept for other sections that reuse these keyframes */
@@ -257,4 +304,59 @@
   font-size: clamp(1.15rem, 2.4vw, 1.7rem);
   letter-spacing: -0.03em;
   white-space: nowrap;
+}
+
+/* Phones: calmer hero. Video stays clear at the top, copy sits at the bottom */
+@media (max-width: 640px) {
+  section.hero {
+    min-height: 100svh;
+    align-items: end;
+    padding: calc(84px + env(safe-area-inset-top, 0px)) 18px calc(26px + env(safe-area-inset-bottom, 0px));
+  }
+
+  section.hero .hbg::after {
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.55) 0%,
+      rgba(0, 0, 0, 0) 22%,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(0, 0, 0, 0.8) 72%,
+      #000 100%
+    );
+  }
+
+  section.hero .eyebrow {
+    display: none;
+  }
+
+  section.hero h1 {
+    font-size: clamp(2rem, 8.6vw, 2.7rem);
+  }
+
+  section.hero .cta {
+    margin-top: 18px;
+    gap: 10px;
+  }
+
+  section.hero .cta .btn {
+    min-height: 48px;
+  }
+
+  section.hero .deals {
+    gap: 10px;
+  }
+
+  section.hero .deals li {
+    min-height: 44px;
+    padding: 7px 12px;
+    border-radius: 14px;
+  }
+
+  section.hero .deals b {
+    font-size: 0.92rem;
+  }
+
+  section.hero .deals small {
+    font-size: 0.72rem;
+  }
 }
