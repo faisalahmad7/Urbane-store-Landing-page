@@ -335,9 +335,13 @@
     display: none;
   }
 
+@media (max-width: 640px) {
   section.hero h1 {
+    position: relative;
+    top: -500px;
     font-size: clamp(2rem, 8.6vw, 2.7rem);
   }
+}
 
   section.hero .cta {
     margin-top: 18px;
