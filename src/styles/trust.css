@@ -9,6 +9,36 @@
   max-width: 16ch;
 }
 
+.why-pts {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.why-pts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 14px;
+  border-radius: 99px;
+  border: 1px solid var(--line);
+  background: var(--s1);
+  font-weight: 600;
+  font-size: 0.97rem;
+}
+
+.why-pts li::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--y);
+  box-shadow: 0 0 0 4px rgba(255, 194, 14, 0.2);
+}
+
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -27,6 +57,40 @@
 
 .stat:hover {
   transform: translateY(-6px);
+}
+
+.stat .lbl {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 clamp(14px, 2vw, 22px);
+  font-family: var(--fl);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mut);
+}
+
+.stat .lbl span {
+  color: var(--y);
+  font-weight: 700;
+}
+
+.stat .lbl::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.stat.y .lbl,
+.stat.y .lbl span {
+  color: #000;
+}
+
+.stat.y .lbl::after {
+  background: rgba(0, 0, 0, 0.28);
 }
 
 .stat .num {
@@ -66,6 +130,8 @@
 .stat h3 {
   margin: 14px 0 6px;
   font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25;
   letter-spacing: -0.02em;
 }
 
