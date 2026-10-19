@@ -363,29 +363,31 @@
   }
 
   section.hero .cta {
-    margin-top: 28px;
-    gap: 10px;
+    margin-top: 24px;
+    gap: 8px;
   }
 
   section.hero .cta .btn {
-    min-height: 48px;
+    min-height: 40px;
+    font-size: 0.9rem;
   }
 
   section.hero .deals {
-    gap: 10px;
+    gap: 8px;
   }
 
   section.hero .deals li {
-    min-height: 44px;
-    padding: 7px 12px;
-    border-radius: 14px;
+    min-height: 36px;
+    padding: 5px 10px;
+    border-radius: 12px;
+    gap: 1px;
   }
 
   section.hero .deals b {
-    font-size: 0.92rem;
+    font-size: 0.82rem;
   }
 
   section.hero .deals small {
-    font-size: 0.72rem;
+    font-size: 0.66rem;
   }
 }
