@@ -82,7 +82,7 @@
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   gap: clamp(40px, 8vw, 120px);
-  align-items: start;
+  align-items: center;
 }
 
 #faq .faq-intro {
