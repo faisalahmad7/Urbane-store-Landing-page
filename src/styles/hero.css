@@ -368,8 +368,12 @@
   }
 
   section.hero .cta .btn {
-    min-height: 34px;
-    font-size: 0.82rem;
+    width: auto;
+    flex: none;
+    align-self: flex-start;
+    min-height: 32px;
+    padding: 0 16px;
+    font-size: 0.8rem;
   }
 
   section.hero .deals {
