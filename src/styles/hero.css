@@ -312,36 +312,51 @@
   white-space: nowrap;
 }
 
-/* Phones: calmer hero. Video stays clear at the top, copy sits at the bottom */
+/* Phones: the video sits in its own 4:3 frame (light zoom, the end logo fits whole) with the copy underneath. */
 @media (max-width: 640px) {
   section.hero {
-    min-height: 100svh;
-    align-items: end;
-    padding: calc(84px + env(safe-area-inset-top, 0px)) 18px calc(26px + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: auto;
+    gap: 0;
+    padding: calc(72px + env(safe-area-inset-top, 0px)) 18px calc(34px + env(safe-area-inset-bottom, 0px));
+  }
+
+  section.hero .hbg {
+    position: relative;
+    inset: auto;
+    z-index: 0;
+    flex: none;
+    width: calc(100% + 36px);
+    margin: 0 -18px;
+    aspect-ratio: 4 / 3;
+  }
+
+  section.hero .hbg img,
+  section.hero .hbg video {
+    object-fit: cover;
+    object-position: 50% 50%;
   }
 
   section.hero .hbg::after {
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.55) 0%,
-      rgba(0, 0, 0, 0) 22%,
-      rgba(0, 0, 0, 0) 40%,
-      rgba(0, 0, 0, 0.8) 72%,
-      #000 100%
-    );
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 20%);
+  }
+
+  section.hero .hcopy {
+    position: relative;
+    z-index: 1;
+    margin-top: 22px;
   }
 
   section.hero .eyebrow {
     display: none;
   }
 
-@media (max-width: 640px) {
   section.hero h1 {
-    position: relative;
-    top: -500px;
     font-size: clamp(2rem, 8.6vw, 2.7rem);
   }
-}
 
   section.hero .cta {
     margin-top: 18px;
