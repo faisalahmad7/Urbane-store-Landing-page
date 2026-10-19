@@ -407,3 +407,28 @@
     font-size: 0.6rem;
   }
 }
+
+/* Tagline: left aligned, vertically centered on the hero video */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;      /* vertical center */
+  justify-content: flex-start; /* left side */
+}
+
+.hero .hbg {
+  position: absolute;
+  inset: 0;
+}
+
+.hero .hcopy {
+  position: relative;
+  z-index: 2;
+  top: auto;
+  bottom: auto;
+  transform: none;
+  margin: 0;
+  padding-left: clamp(20px, 5vw, 72px);
+  max-width: min(640px, 90%);
+  text-align: left;
+}
