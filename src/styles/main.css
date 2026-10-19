@@ -20,3 +20,21 @@
 @import "./faq.css";
 @import "./lightbox.css";
 @import "./responsive.css";
+
+/* Golden glow for all four feature cards */
+.stat {
+  border: 3px solid rgba(255, 193, 7, 0.65);
+  box-shadow:
+    0 0 8px rgba(255, 193, 7, 0.18),
+    0 0 20px rgba(255, 193, 7, 0.08);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Stronger glow on hover */
+.stat:hover {
+  border-color: #ffc107;
+  box-shadow:
+    0 0 8px rgba(255, 193, 7, 0.55),
+    0 0 20px rgba(255, 193, 7, 0.3),
+    0 0 36px rgba(255, 193, 7, 0.15);
+}
