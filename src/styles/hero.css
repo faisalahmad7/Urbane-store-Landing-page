@@ -331,7 +331,7 @@
     flex: none;
     width: calc(100% + 36px);
     margin: 0 -18px;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 10 / 9;
   }
 
   section.hero .hbg img,
@@ -341,13 +341,16 @@
   }
 
   section.hero .hbg::after {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 20%);
+    background:
+      linear-gradient(0deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0) 52%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 20%);
   }
 
+  /* The headline sits on the bottom of the video; the buttons start just below it */
   section.hero .hcopy {
     position: relative;
     z-index: 1;
-    margin-top: 22px;
+    margin-top: -76px;
   }
 
   section.hero .eyebrow {
@@ -355,11 +358,12 @@
   }
 
   section.hero h1 {
-    font-size: clamp(2rem, 8.6vw, 2.7rem);
+    font-size: clamp(1.6rem, 7.2vw, 2rem);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
   }
 
   section.hero .cta {
-    margin-top: 18px;
+    margin-top: 28px;
     gap: 10px;
   }
 
