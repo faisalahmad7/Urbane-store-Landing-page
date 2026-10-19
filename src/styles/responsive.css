@@ -475,3 +475,13 @@
     gap: 12px;
   }
 }
+@media (max-width: 640px) {
+  .hero h1 .ln {
+    position: relative;
+    top: 55px;
+  }
+
+  .hero h1 {
+    margin-bottom: 60px;
+  }
+}
