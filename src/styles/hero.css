@@ -331,7 +331,7 @@
     flex: none;
     width: calc(100% + 36px);
     margin: 0 -18px;
-    aspect-ratio: 100 / 106;
+    aspect-ratio: 100 / 127;
   }
 
   section.hero .hbg img,
@@ -359,6 +359,7 @@
 
   section.hero h1 {
     font-size: clamp(1.6rem, 7.2vw, 2rem);
+    text-align: center;
     text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
   }
 
