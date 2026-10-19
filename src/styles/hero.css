@@ -331,7 +331,7 @@
     flex: none;
     width: calc(100% + 36px);
     margin: 0 -18px;
-    aspect-ratio: 10 / 9;
+    aspect-ratio: 100 / 106;
   }
 
   section.hero .hbg img,
@@ -363,31 +363,31 @@
   }
 
   section.hero .cta {
-    margin-top: 24px;
-    gap: 8px;
+    margin-top: 22px;
+    gap: 6px;
   }
 
   section.hero .cta .btn {
-    min-height: 40px;
-    font-size: 0.9rem;
-  }
-
-  section.hero .deals {
-    gap: 8px;
-  }
-
-  section.hero .deals li {
-    min-height: 36px;
-    padding: 5px 10px;
-    border-radius: 12px;
-    gap: 1px;
-  }
-
-  section.hero .deals b {
+    min-height: 34px;
     font-size: 0.82rem;
   }
 
+  section.hero .deals {
+    gap: 6px;
+  }
+
+  section.hero .deals li {
+    min-height: 30px;
+    padding: 3px 8px;
+    border-radius: 10px;
+    gap: 0;
+  }
+
+  section.hero .deals b {
+    font-size: 0.74rem;
+  }
+
   section.hero .deals small {
-    font-size: 0.66rem;
+    font-size: 0.6rem;
   }
 }
