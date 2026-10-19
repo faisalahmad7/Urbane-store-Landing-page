@@ -341,16 +341,13 @@
   }
 
   section.hero .hbg::after {
-    background:
-      linear-gradient(0deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.4) 30%, rgba(0, 0, 0, 0) 52%),
-      linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 20%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.35) 22%, rgba(0, 0, 0, 0) 42%);
   }
 
-  /* The headline sits on the bottom of the video; the buttons start just below it */
+  /* The headline sits in the top-left corner of the video, just under the nav bar */
   section.hero .hcopy {
-    position: relative;
-    z-index: 1;
-    margin-top: -76px;
+    position: static;
+    margin-top: 22px;
   }
 
   section.hero .eyebrow {
@@ -358,8 +355,13 @@
   }
 
   section.hero h1 {
+    position: absolute;
+    z-index: 2;
+    top: calc(86px + env(safe-area-inset-top, 0px));
+    left: 18px;
+    right: 18px;
+    text-align: left;
     font-size: clamp(1.6rem, 7.2vw, 2rem);
-    text-align: center;
     text-shadow: 0 2px 14px rgba(0, 0, 0, 0.75);
   }
 
