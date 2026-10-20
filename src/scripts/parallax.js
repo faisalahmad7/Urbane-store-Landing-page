@@ -22,17 +22,10 @@ function initHeroVideo() {
     return;
   }
 
-  // Configure playback before loading the video.
+  // Reinforce the playback properties defined in HTML.
   video.muted = true;
   video.defaultMuted = true;
-  video.autoplay = true;
   video.playsInline = true;
-  video.loop = true;
-
-  video.setAttribute("muted", "");
-  video.setAttribute("autoplay", "");
-  video.setAttribute("playsinline", "");
-  video.setAttribute("webkit-playsinline", "");
 
   let playPending = false;
   let retryTimer = null;
@@ -88,15 +81,23 @@ function initHeroVideo() {
               source: video.currentSrc
             });
 
-            // Autoplay restrictions require a user gesture.
+            // A user gesture may be required.
             if (error.name === "NotAllowedError") return;
 
             // Retry transient failures without looping endlessly.
-            if (!document.hidden && !video.error && retryTimer === null) {
+            if (
+              !document.hidden &&
+              !video.error &&
+              retryTimer === null
+            ) {
               retryTimer = setTimeout(() => {
                 retryTimer = null;
 
-                if (!document.hidden && video.paused && !video.error) {
+                if (
+                  !document.hidden &&
+                  video.paused &&
+                  !video.error
+                ) {
                   attemptPlayback("delayed-retry");
                 }
               }, 1200);
@@ -119,6 +120,7 @@ function initHeroVideo() {
     hasStarted = true;
     playPending = false;
     clearRetry();
+
     video.classList.add("on");
 
     document.removeEventListener("pointerdown", onUserGesture);
@@ -166,7 +168,7 @@ function initHeroVideo() {
     }
   });
 
-  // Fallback when the browser blocks automatic playback.
+  // Fallback when automatic playback is blocked.
   document.addEventListener("pointerdown", onUserGesture);
   document.addEventListener("touchstart", onUserGesture, {
     passive: true
