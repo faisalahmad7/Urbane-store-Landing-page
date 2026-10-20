@@ -1,14 +1,20 @@
 name = "urbane"
+main = "src/worker/index.js"
 compatibility_date = "2026-10-01"
-
-# Serves the Vite build output as a static site on Cloudflare.
-[assets]
-directory = "./dist"
-not_found_handling = "404-page"
 
 # Custom domain: uncomment AFTER urbanefca.in shows "Active" in Cloudflare
 # (nameservers fixed at the registrar), then run `npm run deploy` again.
+# (This must stay above the [assets] section.)
 # routes = [
 #   { pattern = "urbanefca.in", custom_domain = true },
 #   { pattern = "www.urbanefca.in", custom_domain = true }
 # ]
+
+# Serves the Vite build output as a static site on Cloudflare.
+# Only /videos/* goes through the Worker (src/worker/index.js), which adds the
+# partial-download (Range) support that iPhones need to play video.
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "404-page"
+run_worker_first = ["/videos/*"]
