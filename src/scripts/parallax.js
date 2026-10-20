@@ -1,8 +1,12 @@
 /** Pointer parallax on the hero (only if it has a collage), and gentle scroll parallax on `[data-px]` photos. */
 
-import { $, $$, hasMouse, reduceMotion } from "./utils.js";
+import { $, $$, hasMouse, isIOS, reduceMotion } from "./utils.js";
 
-/** Hero video: a small portrait file on phones, a larger one elsewhere. Skipped for reduced motion or data saver. */
+/**
+ * Hero video: a small portrait file on phones, a larger one elsewhere. Skipped for reduced motion or data saver.
+ * iPhones/iPads get small H.264 MP4 files (older iOS can't play WebM, and the WebM files are large),
+ * with a still poster so something shows while the video loads. Other devices are unchanged.
+ */
 function initHeroVideo() {
   const video = $("#heroVideo");
   if (!video) return;
@@ -10,7 +14,15 @@ function initHeroVideo() {
   if (reduceMotion || saveData) return;
 
   const phone = window.matchMedia("(max-width: 640px)").matches;
-  video.src = phone ? video.dataset.srcM : video.dataset.srcD;
+  if (isIOS) {
+    video.muted = true;
+    video.setAttribute("webkit-playsinline", "");
+    video.poster = phone ? "/videos/hero-m-poster.jpg" : "/videos/hero-poster.jpg";
+    video.src = phone ? "/videos/hero-m.mp4" : "/videos/hero.mp4";
+    video.classList.add("on");
+  } else {
+    video.src = phone ? video.dataset.srcM : video.dataset.srcD;
+  }
   video.addEventListener("playing", () => video.classList.add("on"), { once: true });
   const p = video.play();
   if (p && p.catch) p.catch(() => {});

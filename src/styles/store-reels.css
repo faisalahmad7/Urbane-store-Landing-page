@@ -72,3 +72,29 @@
   width: 18px;
   height: 18px;
 }
+
+/* iPhone / iPad only (the "ios" class is set in utils.js).
+   iOS Safari glitches when a rounded, overflow-hidden tile sits inside a moving strip:
+   photos flicker or vanish near the edges. These rules put each strip and tile on its own
+   GPU layer and clip the rounded corners in a way Safari renders reliably. */
+.ios .strip {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.ios .tile {
+  transform: translateZ(0);
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.ios .tile img {
+  transition: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.ios .tile:hover img {
+  transform: none;
+}
