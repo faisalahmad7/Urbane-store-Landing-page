@@ -307,3 +307,15 @@
   color: var(--y);
   margin-top: 2px;
 }
+
+/* Keep "flat 50% off" inside its card at any screen size */
+@supports (container-type: inline-size) {
+  .stat.hl {
+    container-type: inline-size;
+  }
+
+  .stat.hl .num {
+    font-size: min(3.2rem, 17cqw);
+    gap: 0.16em;
+  }
+}
