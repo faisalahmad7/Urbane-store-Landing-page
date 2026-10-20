@@ -26,16 +26,23 @@ function tilesHtml(ids, setName, hidden) {
     .join("");
 }
 
-/** Fills a reel with the real tiles plus three hidden copies so the scroll loops seamlessly. */
+/**
+ * Fills a reel with the real tiles plus hidden copies so the scroll loops seamlessly.
+ * iOS gets a shorter strip (one real set + one copy) because Safari struggles to draw a very wide moving strip.
+ */
 function buildReel(el, ids, setName) {
   const copies = tilesHtml(ids, setName, true);
-  el.innerHTML = tilesHtml(ids, setName, false) + copies + copies + copies;
+  el.innerHTML = tilesHtml(ids, setName, false) + (isIOS ? copies : copies + copies + copies);
 }
+
+/** Smaller copy of a photo (same file name) used inside the moving reels on iOS to save memory. */
+const thumbSrc = (src) => src.replace("/images/photos/", "/images/thumbs/");
 
 /** Points every <img data-i="N"> at its photo file. */
 function attachImages() {
   $$("[data-i]").forEach((img) => {
-    img.src = PHOTOS[img.getAttribute("data-i")].src;
+    const { src } = PHOTOS[img.getAttribute("data-i")];
+    img.src = isIOS && img.closest(".tile") ? thumbSrc(src) : src;
     img.decoding = "async";
   });
 }
