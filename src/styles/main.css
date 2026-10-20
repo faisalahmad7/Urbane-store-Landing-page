@@ -38,3 +38,13 @@
     0 0 20px rgba(255, 193, 7, 0.3),
     0 0 36px rgba(255, 193, 7, 0.15);
 }
+/* Keep the authenticity heading inside its card */
+.stat .num.word {
+  font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  white-space: normal;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  min-width: 0;
+}
