@@ -1,53 +1,186 @@
 
 import { $, $$, hasMouse, reduceMotion } from "./utils.js";
 
-
 function initHeroVideo() {
   const video = $("#heroVideo");
   if (!video) return;
 
-  const saveData =
-    navigator.connection && navigator.connection.saveData;
+  // Respect accessibility preferences.
+  if (reduceMotion) return;
 
-  if (reduceMotion || saveData) return;
+  const connection = navigator.connection;
+  const saveData = connection && connection.saveData;
+
+  // Skip the decorative video for data-saving users.
+  if (saveData) return;
 
   const phone = window.matchMedia("(max-width: 640px)").matches;
+  const source = phone ? video.dataset.srcM : video.dataset.srcD;
 
+  if (!source) {
+    console.error("Hero video source is missing.");
+    return;
+  }
+
+  // Configure playback before loading the video.
   video.muted = true;
   video.defaultMuted = true;
+  video.autoplay = true;
   video.playsInline = true;
+  video.loop = true;
 
   video.setAttribute("muted", "");
+  video.setAttribute("autoplay", "");
   video.setAttribute("playsinline", "");
   video.setAttribute("webkit-playsinline", "");
 
-  video.src = phone ? video.dataset.srcM : video.dataset.srcD;
-  video.load();
+  let playPending = false;
+  let retryTimer = null;
+  let hasStarted = false;
 
-  video.addEventListener(
-    "playing",
-    () => video.classList.add("on"),
-    { once: true }
-  );
+  function clearRetry() {
+    if (retryTimer !== null) {
+      clearTimeout(retryTimer);
+      retryTimer = null;
+    }
+  }
 
-  const attemptPlayback = () => {
-    if (document.hidden || !video.paused) return;
+  function attemptPlayback(reason = "automatic") {
+    if (
+      document.hidden ||
+      !video.isConnected ||
+      !video.paused ||
+      playPending ||
+      hasStarted
+    ) {
+      return;
+    }
 
-    video.play().catch((error) => {
-      console.warn("Hero video playback delayed:", error.name);
-    });
-  };
+    if (video.error) {
+      console.error("Hero video media error:", {
+        code: video.error.code,
+        message: video.error.message,
+        source: video.currentSrc
+      });
+      return;
+    }
 
-  video.addEventListener("loadeddata", attemptPlayback);
-  video.addEventListener("canplay", attemptPlayback);
+    playPending = true;
 
-  document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) attemptPlayback();
+    try {
+      const result = video.play();
+
+      if (result && typeof result.then === "function") {
+        result
+          .then(() => {
+            playPending = false;
+            clearRetry();
+          })
+          .catch((error) => {
+            playPending = false;
+
+            console.warn("Hero video playback failed:", {
+              reason,
+              errorName: error.name,
+              errorMessage: error.message,
+              readyState: video.readyState,
+              networkState: video.networkState,
+              source: video.currentSrc
+            });
+
+            // Autoplay restrictions require a user gesture.
+            if (error.name === "NotAllowedError") return;
+
+            // Retry transient failures without looping endlessly.
+            if (!document.hidden && !video.error && retryTimer === null) {
+              retryTimer = setTimeout(() => {
+                retryTimer = null;
+
+                if (!document.hidden && video.paused && !video.error) {
+                  attemptPlayback("delayed-retry");
+                }
+              }, 1200);
+            }
+          });
+      } else {
+        playPending = false;
+      }
+    } catch (error) {
+      playPending = false;
+      console.warn("Hero video play() error:", error);
+    }
+  }
+
+  function onUserGesture() {
+    attemptPlayback("user-gesture");
+  }
+
+  function onPlaying() {
+    hasStarted = true;
+    playPending = false;
+    clearRetry();
+    video.classList.add("on");
+
+    document.removeEventListener("pointerdown", onUserGesture);
+    document.removeEventListener("touchstart", onUserGesture);
+    document.removeEventListener("keydown", onUserGesture);
+  }
+
+  video.addEventListener("playing", onPlaying);
+
+  video.addEventListener("loadeddata", () => {
+    attemptPlayback("loadeddata");
   });
 
-  attemptPlayback();
-}
+  video.addEventListener("canplay", () => {
+    attemptPlayback("canplay");
+  });
 
+  video.addEventListener("error", () => {
+    const error = video.error;
+
+    console.error("Hero video failed to load:", {
+      code: error?.code,
+      message: error?.message,
+      source: video.currentSrc
+    });
+  });
+
+  video.addEventListener("stalled", () => {
+    console.warn("Hero video download stalled.");
+  });
+
+  video.addEventListener("waiting", () => {
+    console.info("Hero video is waiting for data.");
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && !hasStarted) {
+      attemptPlayback("visibilitychange");
+    }
+  });
+
+  window.addEventListener("pageshow", () => {
+    if (!hasStarted) {
+      attemptPlayback("pageshow");
+    }
+  });
+
+  // Fallback when the browser blocks automatic playback.
+  document.addEventListener("pointerdown", onUserGesture);
+  document.addEventListener("touchstart", onUserGesture, {
+    passive: true
+  });
+  document.addEventListener("keydown", onUserGesture);
+
+  // Attach listeners before starting media loading.
+  if (video.getAttribute("src") !== source) {
+    video.src = source;
+  }
+
+  video.load();
+  attemptPlayback("initial");
+}
 
 export function initHeroParallax() {
   initHeroVideo();
