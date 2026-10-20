@@ -2,24 +2,28 @@
 
 import { $, $$, hasMouse, isIOS, reduceMotion } from "./utils.js";
 
-/**
- * Hero video: a small portrait file on phones, a larger one elsewhere. Skipped for reduced motion or data saver.
- * iPhones/iPads get small H.264 MP4 files (older iOS can't play WebM, and the WebM files are large),
- * with a still poster so something shows while the video loads. Other devices are unchanged.
- */
-/** Try to start playback; if the browser blocks it, retry on the first touch. */
+/** Try to play now; if blocked, retry on canplay, when the tab is visible, and on the first tap/click. */
 function startPlayback(video) {
-  const p = video.play();
-  if (p && p.catch) {
-    p.catch(() => {
-      const retry = () => {
-        video.play().catch(() => {});
-      };
-      window.addEventListener("touchstart", retry, { once: true, passive: true });
-    });
-  }
+  const attempt = () => {
+    if (!video.paused) return;
+    const p = video.play();
+    if (p && p.catch) p.catch(() => {});
+  };
+  attempt();
+  video.addEventListener("loadeddata", attempt);
+  video.addEventListener("canplay", attempt);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) attempt();
+  });
+  ["touchend", "click"].forEach((ev) => window.addEventListener(ev, attempt, { once: true, passive: true }));
 }
 
+/**
+ * Hero video: a small portrait file on phones, a larger one elsewhere. Skipped for reduced motion or data saver.
+ * On iOS the whole MP4 is downloaded first and played from memory (blob URL), because iOS refuses to
+ * stream a video from a server that doesn't answer partial (Range) requests properly.
+ * If that download fails, it falls back to the normal URL. Other devices are unchanged.
+ */
 function initHeroVideo() {
   const video = $("#heroVideo");
   if (!video) return;
@@ -29,29 +33,31 @@ function initHeroVideo() {
   const phone = window.matchMedia("(max-width: 640px)").matches;
   if (isIOS) {
     const url = phone ? "/videos/hero-m.mp4" : "/videos/hero.mp4";
-    // iOS only autoplays if these are real attributes, not just properties.
+    // iOS only autoplays if these are set before the video source is loaded.
     video.muted = true;
     video.defaultMuted = true;
+    video.playsInline = true;
+    video.loop = true;
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
-    video.loop = true;
+    video.removeAttribute("controls");
     video.poster = phone ? "/videos/hero-m-poster.jpg" : "/videos/hero-poster.jpg";
     video.classList.add("on");
+
+    const useSrc = (src) => {
+      video.src = src;
+      video.load();
+      startPlayback(video);
+    };
 
     fetch(url)
       .then((res) => {
         if (!res.ok) throw new Error("video " + res.status);
         return res.blob();
       })
-      .then((blob) => {
-        video.src = URL.createObjectURL(blob);
-        startPlayback(video);
-      })
-      .catch(() => {
-        video.src = url;
-        startPlayback(video);
-      });
+      .then((blob) => useSrc(URL.createObjectURL(blob)))
+      .catch(() => useSrc(url));
     return;
   }
 
