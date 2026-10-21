@@ -1,8 +1,4 @@
-/**
- * Brand logos for the moving strip under the hero.
- * Files live in public/images/logos/. Add a new .webp there, then add a row here.
- */
-
+/** Brand logos for the moving strip. Files live in public/images/logos/. */
 export const BRANDS = [
   { name: "Nike", src: "/images/logos/nike.webp", width: 223, height: 120 },
   { name: "adidas", src: "/images/logos/adidas.webp", width: 135, height: 120 },

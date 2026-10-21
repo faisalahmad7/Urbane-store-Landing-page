@@ -1,5 +1,4 @@
 /** Google reviews shown in the two scrolling rows. */
-
 export const REVIEWS = [
   { text: "Very good service and 100% original shoes.", author: "Ahad" },
   { text: "Amazing collection. Amazing quality!", author: "Suhel" },

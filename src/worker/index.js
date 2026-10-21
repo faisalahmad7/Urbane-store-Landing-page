@@ -1,17 +1,15 @@
 /**
- * Cloudflare Worker entry. Static assets are served by Cloudflare as usual; this only steps in for
- * files under /videos/ so they support HTTP Range requests. iPhones (Safari and Chrome on iOS)
- * will not play a video unless the server answers "give me bytes X to Y" with a 206 response.
+ * Only /videos/* comes through here (see run_worker_first in wrangler.toml).
+ * iPhones refuse to play video unless a Range request is answered with 206.
+ * The asset store is asked first; only if it ignores Range do we cut the slice ourselves.
+ * Delete this Worker if `curl -I -H "Range: bytes=0-1" <site>/videos/hero.mp4` already returns 206.
  */
-
-/** Parses a "bytes=start-end" header into { start, end } or null when it can't be satisfied. */
 export function parseRange(header, size) {
   const m = /^bytes=(\d*)-(\d*)$/.exec(header.trim());
-  if (!m || (m[1] === "" && m[2] === "")) return undefined; // not a usable range: send the whole file
+  if (!m || (m[1] === "" && m[2] === "")) return undefined;
   let start;
   let end;
   if (m[1] === "") {
-    // Suffix range: the last N bytes.
     start = Math.max(size - parseInt(m[2], 10), 0);
     end = size - 1;
   } else {
@@ -24,40 +22,24 @@ export function parseRange(header, size) {
 
 export default {
   async fetch(request, env) {
-    const url = new URL(request.url);
-    const isVideo = url.pathname.startsWith("/videos/");
-    if (!isVideo || (request.method !== "GET" && request.method !== "HEAD")) {
-      return env.ASSETS.fetch(request);
-    }
-
-    // Always fetch the whole file from the asset store (no Range, no conditional headers).
-    const asset = await env.ASSETS.fetch(new Request(request.url, { method: "GET" }));
-    if (!asset.ok) return asset;
-
-    const body = await asset.arrayBuffer();
-    const size = body.byteLength;
-    const headers = new Headers();
-    headers.set("Content-Type", asset.headers.get("Content-Type") || "video/mp4");
-    headers.set("Accept-Ranges", "bytes");
-    const cache = asset.headers.get("Cache-Control");
-    if (cache) headers.set("Cache-Control", cache);
-
+    const res = await env.ASSETS.fetch(request);
     const rangeHeader = request.headers.get("Range");
-    const range = rangeHeader ? parseRange(rangeHeader, size) : undefined;
+    if (request.method !== "GET" || !rangeHeader || res.status !== 200) return res;
+
+    const body = await res.arrayBuffer();
+    const size = body.byteLength;
+    const headers = new Headers(res.headers);
+    headers.set("Accept-Ranges", "bytes");
+    const range = parseRange(rangeHeader, size);
 
     if (range === null) {
       headers.set("Content-Range", `bytes */${size}`);
       return new Response(null, { status: 416, headers });
     }
+    if (!range) return new Response(body, { status: 200, headers });
 
-    if (range) {
-      const { start, end } = range;
-      headers.set("Content-Range", `bytes ${start}-${end}/${size}`);
-      headers.set("Content-Length", String(end - start + 1));
-      return new Response(request.method === "HEAD" ? null : body.slice(start, end + 1), { status: 206, headers });
-    }
-
-    headers.set("Content-Length", String(size));
-    return new Response(request.method === "HEAD" ? null : body, { status: 200, headers });
+    headers.set("Content-Range", `bytes ${range.start}-${range.end}/${size}`);
+    headers.set("Content-Length", String(range.end - range.start + 1));
+    return new Response(body.slice(range.start, range.end + 1), { status: 206, headers });
   },
 };
