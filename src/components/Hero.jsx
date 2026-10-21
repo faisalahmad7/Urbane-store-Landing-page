@@ -4,6 +4,7 @@ import { go, isIOS, reduceMotion } from "../utils";
 const phone = matchMedia("(max-width: 640px)").matches;
 const base = phone ? "/videos/hero-m" : "/videos/hero";
 const still = reduceMotion || navigator.connection?.saveData;
+const tapToPlay = isIOS; // iPhone/iPad: show the poster, start the video on first touch
 
 /** MP4 for every device. The poster is always set, so a blocked or skipped video still shows a picture. */
 function HeroVideo() {
@@ -17,7 +18,7 @@ function HeroVideo() {
     v.setAttribute("muted", "");
     v.setAttribute("playsinline", "");
     const play = () => v.paused && v.play()?.catch(() => {});
-    const onVisible = () => !document.hidden && play();
+    const onVisible = () => !document.hidden && (!tapToPlay || v.currentTime > 0) && play();
     // Plain streaming first. Only if iOS reports an error, download the file and play it from memory.
     const onError = () => {
       if (!isIOS || v.dataset.blob) return;
@@ -27,20 +28,31 @@ function HeroVideo() {
         .then((b) => {
           v.src = URL.createObjectURL(b);
           v.load();
-          play();
+          if (!tapToPlay) play();
         })
         .catch(() => {});
     };
-    play();
-    ["loadeddata", "canplay"].forEach((e) => v.addEventListener(e, play));
+    if (!tapToPlay) {
+      play();
+      ["loadeddata", "canplay"].forEach((e) => v.addEventListener(e, play));
+    }
     v.addEventListener("error", onError);
     document.addEventListener("visibilitychange", onVisible);
-    ["touchend", "click"].forEach((e) => addEventListener(e, play, { once: true, passive: true }));
+
+    // Start on the first touch, even the start of a scroll, without waiting for the finger to lift.
+    const wake = ["touchstart", "touchmove", "pointerdown", "scroll", "touchend", "click"];
+    const off = () => wake.forEach((e) => removeEventListener(e, kick));
+    const kick = () => {
+      if (!v.paused) return off();
+      v.play()?.then(off).catch(() => {});
+    };
+    wake.forEach((e) => addEventListener(e, kick, { passive: true }));
+
     return () => {
       ["loadeddata", "canplay"].forEach((e) => v.removeEventListener(e, play));
       v.removeEventListener("error", onError);
       document.removeEventListener("visibilitychange", onVisible);
-      ["touchend", "click"].forEach((e) => removeEventListener(e, play));
+      off();
     };
   }, []);
 
@@ -52,7 +64,7 @@ function HeroVideo() {
       muted
       loop
       playsInline
-      autoPlay={!still}
+      autoPlay={!still && !tapToPlay}
       preload={still ? "none" : "auto"}
       aria-hidden="true"
       tabIndex={-1}
