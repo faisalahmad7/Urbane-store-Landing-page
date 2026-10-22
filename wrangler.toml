@@ -2,6 +2,8 @@ name = "urbane"
 main = "src/worker/index.js"
 compatibility_date = "2026-10-01"
 workers_dev = false
+preview_urls = false
+routes = [{ pattern = "urbanefca.in", custom_domain = true }]
 
 # Only /videos/* goes through the Worker (Range support for iPhone video).
 # Test first: curl -I -H "Range: bytes=0-1" <site>/videos/hero.mp4
