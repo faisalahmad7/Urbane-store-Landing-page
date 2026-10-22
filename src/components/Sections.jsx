@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BRANDS } from "../data/brands";
 import { REVIEWS } from "../data/reviews";
 import { PHOTOS, SETS, REEL_ORDER } from "../data/photos";
@@ -340,32 +341,53 @@ const FAQS = [
     "Where are you and when are you open?",
     "No. 3, opposite Zam Zam Hotel, Sahil Residency, Kausar Baugh Rd, behind Sana Hospital, Pune 411048. We're open until 10:30 pm.",
   ],
+  [
+    "Do you give a GST bill?",
+    "Yes. Every purchase at urbané is GST billed.",
+  ],
+  [
+    "Is there a footwear and clothing store in Kausar Baugh, Kondhwa?",
+    "Yes. urbané is a footwear and clothing store on Kausar Baugh Road in Kondhwa Khurd, Pune. We stock genuine branded shoes, sneakers, sliders, jackets, polos, tees and trousers.",
+  ],
+  [
+    "How can I contact urbané?",
+    "Call or WhatsApp us on +91 90966 64198, or message us on Instagram @urbanespot. You can also walk in anytime during opening hours.",
+  ],
 ];
  
-export const Faq = () => (
-  <section id="faq" className="sec">
-    <div className="wrap faq-layout">
-      <div className="faq-intro">
-        <h2 className="big rv">Good to know.</h2>
-        <a className="btn k" href={whatsappLink()} target="_blank" rel="noopener">
-          Ask a Question
-        </a>
+const FAQ_SHOWN = 5;
+
+export const Faq = () => {
+  const [more, setMore] = useState(false);
+  return (
+    <section id="faq" className="sec">
+      <div className="wrap faq-layout">
+        <div className="faq-intro">
+          <h2 className="big rv">Good to know.</h2>
+          <a className="btn k" href={whatsappLink()} target="_blank" rel="noopener">
+            Ask a Question
+          </a>
+        </div>
+        <div className="faq rv">
+          {FAQS.map(([q, a], i) => (
+            <details key={q} hidden={!more && i >= FAQ_SHOWN}>
+              <summary>
+                {q}
+                <span className="pm"></span>
+              </summary>
+              <p>{a}</p>
+            </details>
+          ))}
+          {FAQS.length > FAQ_SHOWN && (
+            <button type="button" className="faq-more" onClick={() => setMore(!more)} aria-expanded={more}>
+              {more ? "View less" : "View more"}
+            </button>
+          )}
+        </div>
       </div>
-      <div className="faq rv">
-        {FAQS.map(([q, a]) => (
-          <details key={q}>
-            <summary>
-              {q}
-              <span className="pm"></span>
-            </summary>
-            <p>{a}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
-);
- 
+    </section>
+  );
+};
 export const Visit = () => (
   <section id="visit" className="sec">
     <div className="wrap visit">

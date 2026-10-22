@@ -2509,3 +2509,6 @@ footer .btn .bi {
     translate: none;
   }
 }
+
+.faq details[hidden]{display:none}
+.faq-more{margin-top:20px;background:none;border:0;border-bottom:1px solid currentColor;padding:4px 0;font:inherit;font-weight:600;color:inherit;cursor:pointer}
