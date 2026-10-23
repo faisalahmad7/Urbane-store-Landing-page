@@ -1,7 +1,7 @@
 /** Store contact details used across the page. */
 export const PHONE = "919096664198";
 export const TEL = `tel:+${PHONE}`;
-export const EMAIL = "support@urbane.in";
+export const EMAIL = "support@urbanefca.in";
 export const INSTAGRAM = "https://www.instagram.com/urbanespot/";
 export const REVIEWS_URL =
   "https://www.google.com/search?sxsrf=APpeQnui0nQNRzdR-w1o0rrI6V3Rr_NLlw:1791917362031&si=APenkKm7iecQ4G6P-TsbSMFKIQtv3EFIqRAFw-i8uEbk55Z-_5T9_fyQgZqZRI_BSocSgAyvmx5vhY9X38SzGIo53PyBDsupO3dP_2NNlkwhEQFt7Hat7R2QRevuCtz0gQm12LnRihwI&q=urban%C3%A9+Reviews";
